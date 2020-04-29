@@ -1,11 +1,14 @@
 class RestaurantsController < ApplicationController
     before_action :set_restaurant, only: [:show, :edit, :destroy, :update]
+    # before_action :set_review, only: [:show]
 
     def index
         @restaurants = Restaurant.all
     end
 
-    def show; end
+    def show
+        @review = Review.new
+    end
 
     def new
         @restaurant = Restaurant.new
@@ -41,4 +44,8 @@ class RestaurantsController < ApplicationController
     def set_restaurant
         @restaurant = Restaurant.find(params[:id])
     end
+
+    # def set_review
+    #     @review = Review.find(params[:restaurant_id])
+    # end
 end

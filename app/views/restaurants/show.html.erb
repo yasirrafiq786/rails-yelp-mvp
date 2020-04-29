@@ -1,3 +1,4 @@
+<div class="container p-8">
 <p><%= @restaurant.name %></p>
 <p><%= @restaurant.address %></p> 
 <p><%= @restaurant.phone_number %></p>
@@ -8,10 +9,16 @@
     
   <% end %>
 </ul>
+
 <%= link_to 'List', restaurants_path %>
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
 <%= link_to 'Delete', restaurant_path(@restaurant),
             method: :delete,
             data: { confirm: "Are u sure?"} %>
-<%= link_to 'Leave a Review', new_restaurant_review_path(@restaurant) %>
+            </div>
+<%= simple_form_for [ @restaurant, @review ] do |f| %>
+<%= f.input :content %>
+<%= f.input :rating, collection: 0..5 %>
+<%= f.submit "Submit Review", class: "btn btn-primary" %>
+<% end%>
 
